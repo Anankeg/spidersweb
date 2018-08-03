@@ -4,10 +4,11 @@ $verify = stripslashes(trim($_GET['verify']));
 echo $verify;
 //print_r($verify);
 $nowtime = time();
-$sql = "select id,token_exptime from account where regstatus='0' and token='$verify'";
+$sql = "select id,token_exptime from account where regstatus='0' and token='$verify';";
 echo $sql;
 $query = mysqli_query($con, $sql);
 $row = mysqli_fetch_array($query);
+echo $row['id'];
 if ($row) {
     if ($nowtime > $row['token_exptime']) { //24hour
         $msg = '您的激活有效期已过，请点击重新发送激活邮件.';
