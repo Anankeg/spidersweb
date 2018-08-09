@@ -6,8 +6,10 @@
 
 function sendMail($to, $title, $content)
 {
-    include_once "./PHPMailer.php";
-    include_once "./SMTP.php";
+    include_once "PHPMailer.php";
+    include_once "SMTP.php";
+    include_once "OAuth.php";
+    include_once "Exception.php";
     //引入PHPMailer的核心文件 使用require_once包含避免出现PHPMailer类重复定义的警告
     // require_once "./PHPMailer/src/PHPMailer.php";
     // require_once "./PHPMailer/src/SMTP.php";
@@ -37,13 +39,13 @@ function sendMail($to, $title, $content)
     // $mail->Helo = 'Hello smtp.qq.com Server';
 
     //设置发件人的主机域 可有可无 默认为localhost 内容任意，建议使用你的域名
-    $mail->Hostname = 'http://www.lsgogroup.com';
+    $mail->Hostname = 'http://ftp6244232.host714.zhujiwu.me';
 
     //设置发送的邮件的编码 可选GB2312 我喜欢utf-8 据说utf8在某些客户端收信下会乱码
     $mail->CharSet = 'UTF-8';
 
     //设置发件人姓名（昵称） 任意内容，显示在收件人邮件的发件人邮箱地址前的发件人姓名
-    $mail->FromName = 'LSGO实验室';
+    $mail->FromName = 'Anankewebsite';
 
     //smtp登录的账号 这里填入字符串格式的qq号即可
     $mail->Username = '359637708@qq.com';
@@ -58,7 +60,7 @@ function sendMail($to, $title, $content)
     $mail->isHTML(true);
 
     //设置收件人邮箱地址 该方法有两个参数 第一个参数为收件人邮箱地址 第二参数为给该地址设置的昵称 不同的邮箱系统会自动进行处理变动 这里第二个参数的意义不大
-    $mail->addAddress($to, 'lsgo在线通知');
+    $mail->addAddress($to, '激活邮箱');
 
     //添加多个收件人 则多次调用方法即可
     // $mail->addAddress('xxx@163.com','lsgo在线通知');
